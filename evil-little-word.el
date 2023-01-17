@@ -46,7 +46,7 @@
    (standard-case-table))
   (setq defs `(("Uppercase" ?U ,uc)
                ("Lowercase" ?u ,lc)
-               ("Underscore" ?_ (?_))))
+               ("Separator" ?_ (?_ ?-))))
   (dolist (elt defs)
     (maybe-define-category (cadr elt) (car elt) table)
     (dolist (ch (car (cddr elt)))
