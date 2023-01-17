@@ -81,8 +81,16 @@ list of categories."
   `(let ((evil-cjk-word-separating-categories
           evil-little-word-separating-categories)
          (evil-cjk-word-combining-categories
-          evil-little-word-combining-categories))
-     ,@body))
+          evil-little-word-combining-categories)
+         (syntax-table (make-syntax-table)))
+
+     ;; Ensure that changing a little word does not include the _ or - if
+     ;; evil-want-change-word-to-end is set - Aaron, Mon Jan 16 2023
+     (modify-syntax-entry ?_ "_" syntax-table)
+     (modify-syntax-entry ?_ "-" syntax-table)
+
+     (with-syntax-table syntax-table
+       ,@body)))
 
 (defun forward-evil-little-word (&optional count)
   "Forward by little words."
