@@ -75,6 +75,7 @@ list of categories."
   :type '((character . character))
   :group 'evil-little-word)
 
+;;;###autoload
 (defmacro evil-with-little-word (&rest body)
   (declare (indent defun) (debug t))
   `(let ((evil-cjk-word-separating-categories
@@ -87,30 +88,36 @@ list of categories."
   "Forward by little words."
   (evil-with-little-word (forward-evil-word count)))
 
+;;;###autoload
 (evil-define-motion evil-forward-little-word-begin (count)
   "Move the cursor to the beginning of the COUNT-th next little word."
   :type exclusive
   (evil-with-little-word (evil-forward-word-begin count)))
 
+;;;###autoload
 (evil-define-motion evil-forward-little-word-end (count)
   "Move the cursor to the end of the COUNT-th next little word."
   :type inclusive
   (evil-with-little-word (evil-forward-word-end count)))
 
+;;;###autoload
 (evil-define-motion evil-backward-little-word-begin (count)
   "Move the cursor to the beginning of the COUNT-th previous little word."
   :type exclusive
   (evil-with-little-word (evil-backward-word-begin count)))
 
+;;;###autoload
 (evil-define-motion evil-backward-little-word-end (count)
   "Move the cursor to the end of the COUNT-th previous little word."
   :type inclusive
   (evil-with-little-word (evil-backward-word-end count)))
 
+;;;###autoload
 (evil-define-text-object evil-a-little-word (count &optional beg end type)
   "Select a little word."
   (evil-select-an-object 'evil-little-word beg end type count))
 
+;;;###autoload
 (evil-define-text-object evil-inner-little-word (count &optional beg end type)
   "Select inner little word."
   (evil-select-inner-object 'evil-little-word beg end type count))
