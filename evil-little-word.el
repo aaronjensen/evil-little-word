@@ -45,8 +45,7 @@
              (setq from (1+ from))))))
    (standard-case-table))
   (setq defs `(("Uppercase" ?U ,uc)
-               ("Lowercase" ?u ,lc)
-               ("Separator" ?_ (?_ ?-))))
+               ("Lowercase" ?u ,lc)))
   (dolist (elt defs)
     (maybe-define-category (cadr elt) (car elt) table)
     (dolist (ch (car (cddr elt)))
@@ -58,7 +57,7 @@
   :group 'evil)
 
 (defcustom evil-little-word-separating-categories
-  (append evil-cjk-word-separating-categories '((?u . ?U) (?_ . ?u) (?_ . ?U)))
+  (append evil-cjk-word-separating-categories '((?u . ?U)))
   "List of pair (cons) of categories to determine word boundary
 for little word movement. See the documentation of
 `word-separating-categories'. Use `describe-categories' to see
